@@ -37,7 +37,7 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
 			markets.forEach(function(market){
 				marketStrings.push(market.format());
 			});
-			result += marketStrings.join(' |');
+			result += marketStrings.join(' ');
 			console.log(result);
 			updateWeibo(process.argv[2], result);
 		});
@@ -46,7 +46,7 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
 function updateWeibo(token, status) {
 	var options = {
   "key": "3925063287",
-  "secret": "dbe6de831f6ba924f1cbd849819a91b7",
+  "secret": process.argv[3],
   "base_uri": "https://api.weibo.com/",
   "redirect_uri": "http://114.215.154.32:8088/weibo/auth",
   "authorize_path": "/oauth2/authorize",
