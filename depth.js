@@ -39,13 +39,11 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
 			});
 			result += marketStrings.join(' |');
 			console.log(result);
-			updateWeibo('21c2c2e8c7a27cf0a3b2953a32581a33', result);
+			updateWeibo(process.argv[2], result);
 		});
 });
 
-//#                        console.log('(ask-bid)/bid: '+btccStr+' '+yunbiStr);
-//#	updateWeibo('21c2c2e8c7a27cf0a3b2953a32581a33', '(ask-bid)/bid: '+btccStr+' '+yunbiStr);
-function updateWeibo(code, status) {
+function updateWeibo(token, status) {
 	var options = {
   "key": "3925063287",
   "secret": "dbe6de831f6ba924f1cbd849819a91b7",
@@ -54,7 +52,6 @@ function updateWeibo(code, status) {
   "authorize_path": "/oauth2/authorize",
   "access_path": "/oauth2/access_token"
 	};
-var token = '2.0097y6pF4QKdRE85c3f628a5tGGFqD';
 request.post({url:'https://api.weibo.com/2/statuses/update.json', form: {access_token:token,status:status}},
 function(err,r, body){
 if (err)
