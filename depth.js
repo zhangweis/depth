@@ -21,6 +21,8 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
 	var markets = [];
 	async.map([
 		{name:'btcc', depth: require('./btcc')},
+                {name:'bitstamp', depth: require('./bitstamp')},
+                {name:'btce', depth: require('./btce')},
                 {name:'okcoin', depth: require('./okcoin')},
                 {name:'huobi', depth: require('./huobi')},
                 {name:'yunbi', depth: require('./yunbi')},],
