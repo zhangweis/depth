@@ -21,6 +21,8 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
 	var markets = [];
 	async.map([
 		{name:'btcc', depth: require('./btcc')},
+                {name:'okcoin', depth: require('./okcoin')},
+                {name:'huobi', depth: require('./huobi')},
                 {name:'yunbi', depth: require('./yunbi')},],
 		function(market, callback) {
         market.depth.depth(10000/rate, function(err, ask, bid) {
@@ -29,7 +31,7 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
 	});
 		},
 		 function(err, markets){
-			_.sortBy(markets, function(market){
+			markets =_.sortBy(markets, function(market){
 				return market.getSpread();
 			});
 			var result = '(ask-bid)/bid: ';
