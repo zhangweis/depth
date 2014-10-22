@@ -25,6 +25,7 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
                 {name:'btce', depth: require('./btce')},
                 {name:'okcoin', depth: require('./okcoin')},
                 {name:'huobi', depth: require('./huobi')},
+                {name:'btctrade', depth: require('./btctrade')},
                 {name:'yunbi', depth: require('./yunbi')},],
 		function(market, callback) {
         market.depth.depth(10000/rate, function(err, ask, bid) {
