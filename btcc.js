@@ -1,6 +1,6 @@
 var request = require("request");
 var accumulator = require('./accumulator');
-var url = 'https://data.btcchina.com/data/orderbook?market=btccny&limit=200'
+var url = 'https://data.btcchina.com/data/orderbook?market=btccny&limit=500'
 exports.depth = function(btcAmount,cb) {
 request.get({url:url, json:true}, function(e, r, depth) {
 	if (e) return cb(e);

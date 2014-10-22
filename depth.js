@@ -15,6 +15,7 @@ function MarketSpread(name, ask, bid) {
 		return (this.ask-this.bid)/this.bid;
 	}
 }
+var dollars = process.argv[4]||10000;
 request.get({url:url, json:true}, function(e, r, coindeskbpi) {
         if (e) return console.error(e);
         var rate = coindeskbpi.bpi.USD.rate;
@@ -28,7 +29,7 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
                 {name:'btctrade', depth: require('./btctrade')},
                 {name:'yunbi', depth: require('./yunbi')},],
 		function(market, callback) {
-        market.depth.depth(10000/rate, function(err, ask, bid) {
+        market.depth.depth(dollars/rate, function(err, ask, bid) {
                 if (err) return console.error(err);
 		callback(null,new MarketSpread(market.name, ask, bid));
 	});
@@ -37,7 +38,7 @@ request.get({url:url, json:true}, function(e, r, coindeskbpi) {
 			markets =_.sortBy(markets, function(market){
 				return market.getSpread();
 			});
-			var result = '(ask-bid)/bid: ';
+			var result = '(ask-bid)/bid@'+'$'+dollars+': ';
 			var marketStrings = [];
 			markets.forEach(function(market){
 				marketStrings.push(market.format());

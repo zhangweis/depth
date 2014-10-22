@@ -7,7 +7,7 @@ module.exports = function(btcAmount) {
 				sum += parseFloat(bid[1]);
 				if (sum>=btcAmount) return parseFloat(bid[0]);
 			}
-			return bids[bids.length-1];
+			return parseFloat(bids[bids.length-1][0]);
 		},
 		ask:function(asks) {
 			return this.bid(asks);
